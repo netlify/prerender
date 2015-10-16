@@ -8,8 +8,19 @@ var server = prerender({
     messageTimeout: process.env.PHANTOM_CLUSTER_MESSAGE_TIMEOUT
 });
 
+server.use({
+  beforePhantomRequest: function(req,res,next) {
+    if (req.prerender.url == process.env.STATUS_URL) {
+       var username = process.env.BASIC_AUTH_USERNAME;
+       var password = process.env.BASIC_AUTH_PASSWORD;
+       var auth = 'Basic ' + new Buffer(username + ':' + password).toString('base64');
+       req.headers.authorization = auth;
+    }
+    next();
+  }
+});
 
-// server.use(prerender.basicAuth());
+server.use(prerender.basicAuth());
 // server.use(prerender.whitelist());
 server.use(prerender.blacklist());
 // server.use(prerender.logger());
