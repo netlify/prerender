@@ -16,7 +16,8 @@ server.use(prerender.blacklist());
 server.use(prerender.removeScriptTags());
 server.use(prerender.httpHeaders());
 // server.use(prerender.inMemoryHtmlCache());
-// server.use(prerender.s3HtmlCache());
-server.use(require("prerender-memcached-cache"));
+
+server.use(prerender.s3HtmlCache());
+//server.use(require("prerender-memcached-cache"));
 
 server.start();
