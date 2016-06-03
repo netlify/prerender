@@ -66,9 +66,9 @@ This is a simple service that only takes a url and returns the rendered HTML (wi
 
 Note: you should proxy the request through your server (using middleware) so that any relative links to CSS/images/etc still work.
 
-`GET` http://service.prerender.io/https://www.google.com
+`GET http://service.prerender.io/https://www.google.com`
 
-`GET` http://service.prerender.io/https://www.google.com/search?q=angular
+`GET http://service.prerender.io/https://www.google.com/search?q=angular`
 
 
 ## Running locally
@@ -78,14 +78,16 @@ If you are running the prerender service locally. Make sure you set your middlew
 
 `export PRERENDER_SERVICE_URL=<your local url>`
 
-        $ git clone https://github.com/prerender/prerender.git
+	$ git clone https://github.com/prerender/prerender.git
 	$ cd prerender
 	$ npm install
 	$ node server.js
 	// also supports heroku style invocation using foreman
 	$ foreman start
 
-Prerender will now be running on http://localhost:3000. If you wanted to start a web app that ran on say, http://localhost:8000, you can now visit the URL http://localhost:300/http://localhost:8000 to see how your app would render in Prerender.
+Prerender will now be running on http://localhost:3000. If you wanted to start a web app that ran on say, http://localhost:8000, you can now visit the URL http://localhost:3000/http://localhost:8000 to see how your app would render in Prerender.
+
+Keep in mind you will see 504s for relative URLs because the actual domain on that request is your prerender server. This isn't really an issue because once you proxy that request through the middleware, then the domain will be your website and those requests won't be sent to the prerender server.  For instance if you want to see your relative URLS working visit `http://localhost:8000?_escaped_fragment_=`
 
 ## Deploying your own on heroku
 
@@ -93,18 +95,17 @@ Prerender will now be running on http://localhost:3000. If you wanted to start a
 	$ cd prerender
 	$ heroku create
 	$ git push heroku master
+	
+>If you are installing Prerender under a Windows environment and you encounter errors related to 'node-gyp', you may need to follow these additional steps:
+>https://github.com/nodejs/node-gyp#installation
 
 #Customization
-
-See [prerender.io/server](https://prerender.io/server) to see how to customize the server.
 
 You can clone this repo and run `server.js`
 OR
 use `npm install prerender --save` to create an express-like server with custom plugins
 
 ## Plugins
-
-See [prerender.io/server](https://prerender.io/server) to see how to create plugins.
 
 We use a plugin system in the same way that Connect and Express use middleware. Our plugins are a little different and we don't want to confuse the prerender plugins with the [prerender middleware](#middleware), so we opted to call them "plugins".
 
@@ -123,6 +124,8 @@ Each plugin can implement any of the plugin methods:
 ####`beforeSend(req, res, next)`
 
 ## Available plugins
+
+You can enable the plugins in `server.js` by uncommenting the corresponding lines.
 
 ### basicAuth
 
@@ -229,7 +232,7 @@ An in memory cache but you can easily change it to any caching system compatible
 
 For example, with the request:
 
-`GET` http://service.prerender.io/https://www.facebook.com/
+`GET http://service.prerender.io/https://www.facebook.com/`
 
 First time: Overall Elapsed:	00:00:03.3174661
 
