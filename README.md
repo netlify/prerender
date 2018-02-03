@@ -1,107 +1,35 @@
-Prerender Service [![Stories in Ready](https://badge.waffle.io/prerender/prerender.png?label=ready&title=Ready)](https://waffle.io/prerender/prerender)
-===========================
 
-Google, Facebook, Twitter, Yahoo, and Bing are constantly trying to view your website... but they don't execute javascript. That's why we built Prerender. Prerender is perfect for AngularJS SEO, BackboneJS SEO, EmberJS SEO, and any other javascript framework.
+Facebook, Twitter, Yahoo, and Bing are constantly trying to view your website... but they don't execute javascript. That's why Prerender was built. Prerendering is useful for AngularJS SEO, BackboneJS SEO, EmberJS SEO, and any other javascript framework.
 
-Behind the scenes, Prerender is a node server from [prerender.io](http://prerender.io) that uses phantomjs to create static HTML out of a javascript page. We host this as a service at [prerender.io](http://prerender.io) but we also open sourced it because we believe basic SEO is a right, not a privilege!
-
-It should be used in conjunction with [these middleware libraries](#middleware) to serve the prerendered HTML to crawlers for SEO. Get started in two lines of code using [Rails](https://github.com/prerender/prerender_rails) or [Node](https://github.com/prerender/prerender-node).
+Behind the scenes, Prerender is a node server forked from [prerender.io](http://prerender.io) that uses phantomjs to create static HTML out of a javascript page. Netlify hosts this as a service which you can configure in our UI to work automatically with your page.
 
 Prerender adheres to google's `_escaped_fragment_` proposal, which we recommend you use. It's easy:
 - Just add &lt;meta name="fragment" content="!"> to the &lt;head> of all of your pages
 - If you use hash urls (#), change them to the hash-bang (#!)
+- Turn on prerendering in the Netlify Build & Deploy Settings
 - That's it! Perfect SEO on javascript pages.
 
-Prerender includes lots of plugins if you are running your own server, for example using Amazon S3 to [cache your prerendered HTML](#s3-html-cache).
-Prerender also starts multiple phantomjs processes to maximize throughput.
-
-
-### <a id='middleware'></a>
-## Middleware
-
-This is a list of middleware available to use with the prerender service:
-
-#### Official middleware
-
-###### Javascript
-* [prerender-node](https://github.com/prerender/prerender-node) (Express)
-
-###### Ruby
-* [prerender_rails](https://github.com/prerender/prerender_rails) (Rails)
-
-###### Apache
-* [.htaccess](https://gist.github.com/thoop/8072354)
-
-###### Nginx
-* [nginx.conf](https://gist.github.com/thoop/8165802)
-
-#### Community middleware
-
-###### PHP
-* [zfr-prerender](https://github.com/zf-fr/zfr-prerender) (Zend Framework 2)
-* [YuccaPrerenderBundle](https://github.com/rjanot/YuccaPrerenderBundle) (Symfony 2)
-* [Laravel Prerender](https://github.com/JeroenNoten/Laravel-Prerender) (Laravel)
-
-###### Java
-* [prerender-java](https://github.com/greengerong/prerender-java)
-
-###### Go
-* [goprerender](https://github.com/tampajohn/goprerender)
-
-###### Grails
-* [grails-prerender](https://github.com/tuler/grails-prerender)
-
-###### Nginx
-* [Reverse Proxy Example](https://gist.github.com/Stanback/6998085)
-
-###### Apache
-* [.htaccess](https://gist.github.com/Stanback/7028309)
-
-Request more middleware for a different framework in this [issue](https://github.com/prerender/prerender/issues/12).
-
+This package starts multiple phantomjs processes to maximize throughput, this may be a bit overkill for your testing so you might not want to leave it running after testing is complete.
 
 
 ## How it works
 This is a simple service that only takes a url and returns the rendered HTML (with all script tags removed).
 
-Note: you should proxy the request through your server (using middleware) so that any relative links to CSS/images/etc still work.
-
-`GET http://service.prerender.io/https://www.google.com`
-
-`GET http://service.prerender.io/https://www.google.com/search?q=angular`
-
+Note: you should proxy the request through your server (using middleware) so that any relative links to CSS/images/etc still work.  If you don't, you'll see the relative links fail but the HTML output will still be useful for debugging purposes.
 
 ## Running locally
 If you are trying to test Prerender with your website on localhost, you'll have to run the Prerender server locally so that Prerender can access your local dev website.
 
-If you are running the prerender service locally. Make sure you set your middleware to point to your local Prerender server with:
-
-`export PRERENDER_SERVICE_URL=http://localhost:3000` 
-
-	$ git clone https://github.com/prerender/prerender.git
+	$ git clone https://github.com/netlify/prerender.git
 	$ cd prerender
 	$ npm install
 	$ node server.js
 
-Prerender will now be running on http://localhost:3000. If you wanted to start a web app that ran on say, http://localhost:8000, you can now visit the URL http://localhost:3000/http://localhost:8000 to see how your app would render in Prerender.
+Prerender will now be running on http://localhost:3000 and you can test your page (deployed on netlify or elsewhere!) using links like this:
 
-Keep in mind you will see 504s for relative URLs because the actual domain on that request is your prerender server. This isn't really an issue because once you proxy that request through the middleware, then the domain will be your website and those requests won't be sent to the prerender server.  For instance if you want to see your relative URLS working visit `http://localhost:8000?_escaped_fragment_=`
+http://localhost:3000/https://www.netlify.com/pricing
 
-## Deploying your own on heroku
-
-	$ git clone https://github.com/prerender/prerender.git
-	$ cd prerender
-	$ heroku create
-	$ git push heroku master
-	
->If you are installing Prerender under a Windows environment and you encounter errors related to 'node-gyp', you may need to follow these additional steps:
->https://github.com/nodejs/node-gyp#installation
-
-#Customization
-
-You can clone this repo and run `server.js`
-OR
-use just include prerender in your project with `npm install prerender --save` to create an express-like server with custom plugins.
+You will see debug output in the shell you're running the service in that will hopefully enable you to transpile your javascript appropriately to comply with PhantomJS' limitations.
 
 
 ## Options
