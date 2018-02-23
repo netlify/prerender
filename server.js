@@ -30,7 +30,7 @@ morgan.token("prerender_url", function(req, res) {
 
 app.use(
   morgan(
-    `:date[iso] method=:method status=:status url=:url prerender_url=:prerender_url cache_type=:cache_type timing=:response-time[0] referrer=:referrer user_agent=":user-agent" request_id=:request_id`
+    `:date[iso] method=:method status=:status url=:url prerender_url=:prerender_url cache_type=:cache_type timing=:response-time[0] referrer=":referrer" user_agent=":user-agent" request_id=:request_id`
   )
 );
 app.disable("x-powered-by");
