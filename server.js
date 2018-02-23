@@ -24,22 +24,27 @@ morgan.token("cache_type", function(req, res) {
   return req.prerender.cacheHit ? "CACHE_HIT" : "CACHE_MISS";
 });
 
+morgan.token("prerender_url", function(req, res) {
+  return req.prerender.url;
+});
+
 app.use(
   morgan(
-    `:date[iso] method=:method url=:url status=:status cache_type=:cache_type rsp_content_length=:res[content-length] timing=:response-time referrer=:referrer user_agent=":user_agent" request_id=:request_id`
+    `:date[iso] method=:method status=:status url=:url prerender_url=:prerender_url cache_type=:cache_type timing=:response-time[0] referrer=:referrer user_agent=":user-agent" request_id=:request_id`
   )
 );
 app.disable("x-powered-by");
 app.use(compression());
-app.use(function(err, req, res, next) {
-  res.status(500).end();
-  util.log(`Unhandled request error error=${err} stack=${err.stack}`);
-});
 
 app.get("*", server.onRequest);
 
 //dont check content-type and just always try to parse body as json
 app.post("*", bodyParser.json({ type: () => true }), server.onRequest);
+
+app.use(function(err, req, res, next) {
+  res.status(500).end();
+  util.log(`Unhandled request error error=${err} stack=${err.stack}`);
+});
 
 server.use(require("./lib/plugins/healthCheckAuth"));
 server.use(require("prerender/lib/plugins/basicAuth"));
