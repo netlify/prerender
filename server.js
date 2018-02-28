@@ -51,7 +51,7 @@ app.use(function(err, req, res, next) {
 
 server.use(require("./lib/plugins/healthCheckAuth"));
 server.use(require("prerender/lib/plugins/basicAuth"));
-server.use(require("prerender/lib/plugins/sendPrerenderHeader"));
+server.use(require("prerender/lib/plugins/blockResources"));
 server.use(require("prerender/lib/plugins/blacklist"));
 server.use(require("prerender/lib/plugins/removeScriptTags"));
 server.use(require("prerender/lib/plugins/httpHeaders"));
