@@ -1,32 +1,27 @@
 {
-  "author": "Prerender.io",
-  "name": "prerender",
+  "author": "Netlify",
+  "name": "netlify-prerender",
   "description": "Service to prerender Javascript rendered pages for SEO",
-  "version": "4.4.1",
+  "version": "5.0.0",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/prerender/prerender"
+    "url": "https://github.com/netlify/prerender"
   },
   "dependencies": {
-    "aws-sdk": "^2.4.12",
-    "cache-manager": "^2.1.2",
-    "he": "^1.1.0",
-    "lodash": "^4.14.1",
-    "phridge": "^2.0.0",
-    "signal-exit": "^3.0.0"
-  },
-  "devDependencies": {
-    "mocha": "^3.0.1",
-    "sinon": "^1.17.5"
-  },
-  "scripts": {
-    "test": "./node_modules/.bin/mocha"
+    "aws-sdk": "^2.200.0",
+    "body-parser": "^1.18.2",
+    "cache-manager": "^2.7.0",
+    "compression": "^1.7.2",
+    "express": "^4.16.2",
+    "morgan": "^1.9.0",
+    "prerender": "^5.2.2"
   },
   "bin": {
     "prerender": "server.js"
   },
   "engines": {
-    "node": ">=0.12.9"
-  }
+    "node": ">=8.9"
+  },
+  "private": true
 }
