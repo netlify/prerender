@@ -323,9 +323,9 @@ path-to-regexp@0.1.7:
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-0.1.7.tgz#df604178005f522f15eb4490e7247a1bfaa67f8c"
 
-prerender@^5.2.2:
+"prerender@https://github.com/netlify/chrome-prerender#ffa2674b6bf99b0db09b0b37b00107c0f63e6f14":
   version "5.2.2"
-  resolved "https://registry.yarnpkg.com/prerender/-/prerender-5.2.2.tgz#243b69aa2758ab3ffcbf834747f01b45a07c923d"
+  resolved "https://github.com/netlify/chrome-prerender#ffa2674b6bf99b0db09b0b37b00107c0f63e6f14"
   dependencies:
     body-parser "~1.18.2"
     chrome-remote-interface "~0.24.2"
