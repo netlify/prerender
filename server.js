@@ -21,11 +21,14 @@ morgan.token("request_id", function(req, res) {
 });
 
 morgan.token("cache_type", function(req, res) {
-  return req.prerender.cacheHit ? "CACHE_HIT" : "CACHE_MISS";
+  if (req.prerender) {
+    return req.prerender.cacheHit ? "CACHE_HIT" : "CACHE_MISS";
+  }
+  return "-";
 });
 
 morgan.token("prerender_url", function(req, res) {
-  return req.prerender.url;
+  return (req.prerender && req.prerender.url) || "-";
 });
 
 app.use(
