@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 5.0.0 - 2018-02-28
+### Changed
+- Using headless Chrome version of [prerender](https://github.com/prerender/prerender) now.
+
 ## 4.4.1 - 2016-12-28
 ### Changed
 - Whoops. Make sure `shouldEncodeURLBeforeBrowserFetch` defaults to true.
