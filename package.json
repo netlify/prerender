@@ -15,7 +15,7 @@
     "compression": "^1.7.2",
     "express": "^4.16.2",
     "morgan": "^1.9.0",
-    "prerender": "https://github.com/netlify/chrome-prerender#ffa2674b6bf99b0db09b0b37b00107c0f63e6f14"
+    "prerender": "https://github.com/netlify/chrome-prerender#00bd156f665f2d0d23c32dff5556093b3a3b2c41"
   },
   "bin": {
     "prerender": "server.js"

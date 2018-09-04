@@ -59,6 +59,10 @@ server.use(require("./lib/plugins/s3HtmlCache"));
 
 server.start();
 
+process.on("SIGHUP", () => {
+  server.gracefulBrowserRestart();
+});
+
 const port = process.env.PORT || 3000;
 app.listen(port, () =>
   util.log(`Prerender server accepting requests on port ${port}`)
