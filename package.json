@@ -9,13 +9,14 @@
     "url": "https://github.com/netlify/prerender"
   },
   "dependencies": {
+    "@godaddy/terminus": "^2.4.1",
     "aws-sdk": "^2.200.0",
     "body-parser": "^1.18.2",
     "cache-manager": "^2.7.0",
     "compression": "^1.7.2",
     "express": "^4.16.2",
     "morgan": "^1.9.0",
-    "prerender": "https://github.com/netlify/chrome-prerender#ffa2674b6bf99b0db09b0b37b00107c0f63e6f14"
+    "prerender": "https://github.com/netlify/chrome-prerender#363f49fed72802d2153fffa7aa9ae8133e804e02"
   },
   "bin": {
     "prerender": "server.js"

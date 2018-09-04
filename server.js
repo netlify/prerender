@@ -8,6 +8,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const compression = require("compression");
 const morgan = require("morgan");
+const terminus = require("@godaddy/terminus");
 
 server.init({});
 server.onRequest = server.onRequest.bind(server);
@@ -59,7 +60,28 @@ server.use(require("./lib/plugins/s3HtmlCache"));
 
 server.start();
 
+function healthCheck() {
+  if (server.isBrowserConnected) { 
+    return Promise.resolve();
+  } else {
+    return Promise.reject(new Error('browser is not connected'));
+  }
+}
+
 const port = process.env.PORT || 3000;
-app.listen(port, () =>
+const httpServer = http.createServer(app);
+terminus(httpServer, {
+  logger: util.log,
+  healthChecks: {
+    [`/${process.env.STATUS_URL}`]: healthCheck
+  },
+  timeout: process.env.PAGE_LOAD_TIMEOUT || 20000,
+  onSignal: () => {
+    util.log("server is starting cleanup");
+    server.killBrowser();
+  },
+  onShutdown: () => util.log("server is shutting down")
+});
+httpServer.listen(port, () =>
   util.log(`Prerender server accepting requests on port ${port}`)
 );
