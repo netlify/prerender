@@ -55,7 +55,7 @@ server.use(require("prerender/lib/plugins/blockResources"));
 server.use(require("prerender/lib/plugins/blacklist"));
 server.use(require("prerender/lib/plugins/removeScriptTags"));
 server.use(require("prerender/lib/plugins/httpHeaders"));
-server.use(require("./lib/plugins/s3HtmlCache"));
+server.use(require("./lib/plugins/s3Cache"));
 
 server.start();
 
