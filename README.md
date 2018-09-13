@@ -23,14 +23,28 @@ If you are trying to test Prerender with your website on localhost, you'll have 
 	$ git clone https://github.com/netlify/prerender.git
 	$ cd prerender
 	$ npm install
+	$ export BASIC_AUTH_USERNAME=prerender
+	$ export BASIC_AUTH_PASSWORD=test
 	$ node server.js
 
 Prerender will now be running on http://localhost:3000 and you can test your page (deployed on netlify or elsewhere!) using links like this:
 
-http://localhost:3000/https://www.netlify.com/pricing
+http://prerender:test@localhost:3000/render?url=https://www.netlify.com/pricing
+
+You can also take a page screenshot like this:
+
+http://prerender:test@localhost:3000/render?url=https://www.netlify.com/pricing&renderType=jpeg
+
+You can request the full page adding the `fullpage=true` parameter:
+
+http://prerender:test@localhost:3000/render?url=https://www.netlify.com/pricing&renderType=jpeg&fullpage=true
+
+You can also change dimensions by setting width and height:
+
+http://prerender:test@localhost:3000/render?url=https://www.netlify.com/pricing&renderType=jpeg&width=960&height=600
+
 
 You will see debug output in the shell you're running the service in that will hopefully enable you to transpile your javascript appropriately to comply with PhantomJS' limitations.
-
 
 ## Options
 
