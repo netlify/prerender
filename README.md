@@ -1,15 +1,13 @@
 
 Facebook, Twitter, Yahoo, and Bing are constantly trying to view your website... but they don't execute javascript. That's why Prerender was built. Prerendering is useful for AngularJS SEO, BackboneJS SEO, EmberJS SEO, and any other javascript framework.
 
-Behind the scenes, Prerender is a node server forked from [prerender.io](http://prerender.io) that uses phantomjs to create static HTML out of a javascript page. Netlify hosts this as a service which you can configure in our UI to work automatically with your page.
+Behind the scenes, Prerender is a node server forked from [prerender.io](http://prerender.io) that uses headless chrome to create static HTML out of a javascript page. Netlify hosts this as a service which you can configure in our UI to work automatically with your page.
 
-Prerender adheres to google's `_escaped_fragment_` proposal, which we recommend you use. It's easy:
-- Just add &lt;meta name="fragment" content="!"> to the &lt;head> of all of your pages
+Prerender adheres to google's `_escaped_fragment_` proposal, which we recommend you use. It's straightforward:
+- add &lt;meta name="fragment" content="!"> to the &lt;head> of all of your pages
 - If you use hash urls (#), change them to the hash-bang (#!)
 - Turn on prerendering in the Netlify Build & Deploy Settings
 - That's it! Perfect SEO on javascript pages.
-
-This package starts multiple phantomjs processes to maximize throughput, this may be a bit overkill for your testing so you might not want to leave it running after testing is complete.
 
 
 ## How it works
@@ -29,7 +27,7 @@ Prerender will now be running on http://localhost:3000 and you can test your pag
 
 http://localhost:3000/https://www.netlify.com/pricing
 
-You will see debug output in the shell you're running the service in that will hopefully enable you to transpile your javascript appropriately to comply with PhantomJS' limitations.
+You will see debug output in the shell you're running the service in that may help you in debugging why rendering isn't working as you're expecting.
 
 
 ## Options
