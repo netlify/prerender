@@ -1,4 +1,6 @@
 *.iml
 node_modules/
 .DS_Store
+.elasticbeanstalk/
+.ebextensions/
 .idea/

@@ -2,7 +2,7 @@
 
 const http = require("http");
 const util = require("./lib/util");
-const server = require("prerender/lib/server");
+const server = require("./lib/server");
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
@@ -50,11 +50,11 @@ app.use(function(err, req, res, next) {
 });
 
 server.use(require("./lib/plugins/healthCheckAuth"));
-server.use(require("prerender/lib/plugins/basicAuth"));
-server.use(require("prerender/lib/plugins/blockResources"));
-server.use(require("prerender/lib/plugins/blacklist"));
-server.use(require("prerender/lib/plugins/removeScriptTags"));
-server.use(require("prerender/lib/plugins/httpHeaders"));
+server.use(require("./lib/plugins/basicAuth"));
+server.use(require("./lib/plugins/blockResources"));
+server.use(require("./lib/plugins/blacklist"));
+server.use(require("./lib/plugins/removeScriptTags"));
+server.use(require("./lib/plugins/httpHeaders"));
 server.use(require("./lib/plugins/s3HtmlCache"));
 
 server.start();
