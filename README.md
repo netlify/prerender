@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 Facebook, Twitter, Yahoo, and Bing are constantly trying to view your website... but they don't execute javascript. That's why Prerender was built. Prerendering is useful for AngularJS SEO, BackboneJS SEO, EmberJS SEO, and any other javascript framework.
 
@@ -6,174 +5,88 @@ Behind the scenes, Prerender is a node server forked from [prerender.io](http://
 
 Prerender adheres to google's `_escaped_fragment_` proposal, which we recommend you use. It's straightforward:
 - add &lt;meta name="fragment" content="!"> to the &lt;head> of all of your pages
-=======
-Prerender
-===========================
-
-Prerender is a node server that uses Headless Chrome to render HTML, screenshots, PDFs, and HAR files out of any web page. The Prerender server listens for an http request, takes the URL and loads it in Headless Chrome, waits for the page to finish loading by waiting for the network to be idle, and then returns your content.
-
-Looking for our PhantomJS Prerender server? [Go to our phantomjs branch](https://github.com/prerender/prerender/tree/phantomjs)
-
-##### The quickest way to run your own prerender server:
-
-```bash
-$ npm install prerender
-```
-##### server.js
-```js
-const prerender = require('prerender');
-const server = prerender();
-server.start();
-```
-##### test it:
-```bash
-curl http://localhost:3000/render?url=https://www.example.com/
-```
-
-## Use Cases
-The Prerender server can be used in conjunction with [our Prerender.io middleware](#middleware) in order to serve the prerendered HTML of your javascript website to search engines (Google, Bing, etc) and social networks (Facebook, Twitter, etc) for SEO. We run the Prerender server at scale for SEO needs at [https://prerender.io/](https://prerender.io/).
-
-The Prerender server can be used on its own to crawl any web page and pull down the content for your own parsing needs. We host the Prerender server for your own crawling needs at [https://prerender.com/](https://prerender.com/).
-
-
-Prerender differs from Google Puppeteer in that Prerender is a web server that takes in URLs and loads them in parallel in a new tab in Headless Chrome. Puppeteer is an API for interacting with Chrome, but you still have to write that interaction yourself. With Prerender, you don't have to write any code to launch Chrome, load pages, wait for the page to load, or pull the content off of the page. The Prerender server handles all of that for you so you can focus on more important things!
-
-Below you will find documentation for our Prerender.io service (website SEO) and our Prerender.com service (web crawling).
-
-[Click here to jump to Prerender.io documentation](#prerenderio)
-
-[Click here to jump to Prerender.com documentation](#prerendercom)
-
-
-### <a id='prerenderio'></a>
-# Prerender.io
-###### For serving your prerendered HTML to crawlers for SEO
-
-Prerender adheres to Google's `_escaped_fragment_` proposal, which we recommend you use. It's easy:
-- Just add &lt;meta name="fragment" content="!"> to the &lt;head> of all of your pages
->>>>>>> prerender/master
 - If you use hash urls (#), change them to the hash-bang (#!)
 - Turn on prerendering in the Netlify Build & Deploy Settings
 - That's it! Perfect SEO on javascript pages.
 
-<<<<<<< HEAD
-=======
-
-### <a id='middleware'></a>
-## Middleware
-
-This is a list of middleware available to use with the prerender service:
-
-#### Official middleware
-
-###### Javascript
-* [prerender-node](https://github.com/prerender/prerender-node) (Express)
-
-###### Ruby
-* [prerender_rails](https://github.com/prerender/prerender_rails) (Rails)
-
-###### Apache
-* [.htaccess](https://gist.github.com/thoop/8072354)
-
-###### Nginx
-* [nginx.conf](https://gist.github.com/thoop/8165802)
-
-#### Community middleware
-
-###### PHP
-* [zfr-prerender](https://github.com/zf-fr/zfr-prerender) (Zend Framework 2)
-* [YuccaPrerenderBundle](https://github.com/rjanot/YuccaPrerenderBundle) (Symfony 2)
-* [Laravel Prerender](https://github.com/JeroenNoten/Laravel-Prerender) (Laravel)
-
-###### Java
-* [prerender-java](https://github.com/greengerong/prerender-java)
-
-###### Go
-* [goprerender](https://github.com/tampajohn/goprerender)
-
-###### Grails
-* [grails-prerender](https://github.com/tuler/grails-prerender)
-
-###### Nginx
-* [Reverse Proxy Example](https://gist.github.com/Stanback/6998085)
-
-###### Apache
-* [.htaccess](https://gist.github.com/Stanback/7028309)
-
-Request more middleware for a different framework in this [issue](https://github.com/prerender/prerender/issues/12).
-
-
->>>>>>> prerender/master
 
 ## How it works
 This is a simple service that only takes a url and returns the rendered HTML (with all script tags removed).
 
-<<<<<<< HEAD
 Note: you should proxy the request through your server (using middleware) so that any relative links to CSS/images/etc still work.  If you don't, you'll see the relative links fail but the HTML output will still be useful for debugging purposes.
-=======
-Note: you should proxy the request through your server (using middleware) so that any relative links to CSS/images/etc still work.
-
-`GET https://service.prerender.io/https://www.google.com`
-
-`GET https://service.prerender.io/https://www.google.com/search?q=angular`
-
->>>>>>> prerender/master
 
 ## Running locally
 If you are trying to test Prerender with your website on localhost, you'll have to run the Prerender server locally so that Prerender can access your local dev website.
 
-<<<<<<< HEAD
 	$ git clone https://github.com/netlify/prerender.git
-=======
-If you are running the prerender service locally. Make sure you set your middleware to point to your local Prerender server with:
-
-`export PRERENDER_SERVICE_URL=http://localhost:3000`
-
-	$ git clone https://github.com/prerender/prerender.git
->>>>>>> prerender/master
 	$ cd prerender
 	$ npm install
 	$ node server.js
 
-<<<<<<< HEAD
 Prerender will now be running on http://localhost:3000 and you can test your page (deployed on netlify or elsewhere!) using links like this:
 
 http://localhost:3000/https://www.netlify.com/pricing
 
 You will see debug output in the shell you're running the service in that may help you in debugging why rendering isn't working as you're expecting.
-=======
-Prerender will now be running on http://localhost:3000. If you wanted to start a web app that ran on say, http://localhost:8000, you can now visit the URL http://localhost:3000/http://localhost:8000 to see how your app would render in Prerender.
-
-To test how your website will render through Prerender using the middleware, you'll want to visit the URL http://localhost:8000?_escaped_fragment_=
-
-That should send a request to the Prerender server and display the prerendered page through your website. If you View Source of that page, you should see the HTML with all of the `<script>` tags removed.
-
-Keep in mind you will see 504s for relative URLs when accessing http://localhost:3000/http://localhost:8000 because the actual domain on that request is your prerender server. This isn't really an issue because once you proxy that request through the middleware, then the domain will be your website and those requests won't be sent to the prerender server.  For instance if you want to see your relative URLS working visit `http://localhost:8000?_escaped_fragment_=`
-
-
-# Customization
-
-You can clone this repo and run `server.js` OR include prerender in your project with `npm install prerender --save` to create an express-like server with custom plugins.
->>>>>>> prerender/master
 
 
 ## Options
 
-### chromeLocation
+### workers
 ```
 var prerender = require('./lib');
 
 var server = prerender({
-    chromeLocation: '/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary'
+    workers: 1
 });
 
 server.start();
 ```
 
-Uses a chrome install at a certain location. Prerender does not download Chrome so you will want to make sure Chrome is installed on your server already. The Prerender server checks a few known locations for Chrome but this lets you override that.
+The number of Prerender workers that you'd like to start. We suggest 1 per CPU on your machine. `Default: os.cpus().length`
 
-`Default: null`
+### iterations
+```
+var prerender = require('./lib');
 
+var server = prerender({
+    iterations: 40
+});
+
+server.start();
+```
+
+The number of pages Prerender should render before restarting the worker. WARNING: Will restart Prerender mid-request if two requests are in flight, causing a 504 response to be sent.
+
+Shutting Prerender down reclaims memory to ensure good performance. You can also set the environment variable of `NUM_ITERATIONS` instead of passing in the `iterations` parameter. `Default: 40`
+
+### softIterations
+```
+var prerender = require('./lib');
+
+var server = prerender({
+    softIterations: 5
+});
+
+server.start();
+```
+
+The number of pages Prerender should render before restarting the worker. This option counts the number of requests in flight and only restarts the worker if no requests are in flight. If you constantly have more than 1 request in flight, this won't restart the server.
+
+Shutting Prerender down reclaims memory to ensure good performance. You can also set the environment variable of `NUM_SOFT_ITERATIONS` instead of passing in the `softIterations` parameter. `Default: 30`
+
+### cookiesEnabled
+```
+var prerender = require('./lib');
+
+var server = prerender({
+    cookiesEnabled: true
+});
+
+server.start();
+```
+
+If Prerender should use Cookies. You can also set the environment variable of `COOKIES_ENABLED` instead of passing in the `cookiesEnabled` parameter. `Default: false`
 
 ### logRequests
 ```
@@ -186,39 +99,33 @@ var server = prerender({
 server.start();
 ```
 
-Causes the Prerender server to print out every request made represented by a `+` and every response received represented by a `-`. Lets you analyze page load times.
+Causes the Prerender server to print out every request made represented by a `+` and every response received represented by a `-`. Lets you analyze page load times. `Default: false`
 
-`Default: false`
-
-### pageDoneCheckInterval
+### pageDoneCheckTimeout
 ```
 var prerender = require('./lib');
 
 var server = prerender({
-    pageDoneCheckInterval: 1000
+    pageDoneCheckTimeout: 300
 });
 
 server.start();
 ```
 
-Number of milliseconds between the interval of checking whether the page is done loading or not. You can also set the environment variable of `PAGE_DONE_CHECK_INTERVAL` instead of passing in the `pageDoneCheckInterval` parameter.
+Number of milliseconds between the interval of checking whether the page is done loading or not. You can also set the environment variable of `PAGE_DONE_CHECK_TIMEOUT` instead of passing in the `pageDoneCheckTimeout` parameter. `Default: 300`
 
-`Default: 500`
-
-### pageLoadTimeout
+### resourceDownloadTimeout
 ```
 var prerender = require('./lib');
 
 var server = prerender({
-    pageLoadTimeout: 20 * 1000
+    resourceDownloadTimeout: 10000
 });
 
 server.start();
 ```
 
-Maximum number of milliseconds to wait while downloading the page, waiting for all pending requests/ajax calls to complete before timing out and continuing on. Time out condition does not cause an error, it just returns the HTML on the page at that moment. You can also set the environment variable of `PAGE_LOAD_TIMEOUT` instead of passing in the `pageLoadTimeout` parameter.
-
-`Default: 20000`
+Number of milliseconds to wait while downloading the page, waiting for all pending requests/ajax calls to complete before timing out and continuing on. Time out condition does not cause an error, it just moves on to the javascript execution stage. You can also set the environment variable of `RESOURCE_DOWNLOAD_TIMEOUT` instead of passing in the `resourceDownloadTimeout` parameter. `Default: 10000`
 
 ### waitAfterLastRequest
 ```
@@ -231,24 +138,59 @@ var server = prerender({
 server.start();
 ```
 
-Number of milliseconds to wait after the number of requests/ajax calls in flight reaches zero. HTML is pulled off of the page at this point. You can also set the environment variable of `WAIT_AFTER_LAST_REQUEST` instead of passing in the `waitAfterLastRequest` parameter.
+Number of milliseconds to wait after the number of requests/ajax calls in flight reaches zero. Javascript execution begins after this in order to pull the HTML off of the page. You can also set the environment variable of `WAIT_AFTER_LAST_REQUEST` instead of passing in the `waitAfterLastRequest` parameter. `Default: 500`
 
-`Default: 500`
-
-### followRedirects
+### jsTimeout
 ```
 var prerender = require('./lib');
 
 var server = prerender({
-    followRedirects: false
+    jsTimeout: 10000
 });
 
 server.start();
 ```
 
-Whether Chrome follows a redirect on the first request if a redirect is encountered. Normally, for SEO purposes, you do not want to follow redirects. Instead, you want the Prerender server to return the redirect to the crawlers so they can update their index. Don't set this to `true` unless you know what you are doing. You can also set the environment variable of `FOLLOW_REDIRECTS` instead of passing in the `followRedirects` parameter.
+Number of milliseconds to continue trying to pull the HTML off of the page using javascript before timing out. Once the timeout is hit, Prerender returns a 200 response with the last HTML that it was able to pull off of the page. You can also set the environment variable of `JS_TIMEOUT` instead of passing in the `jsTimeout` parameter. `Default: 10000`
 
-`Default: false`
+### jsCheckTimeout
+```
+var prerender = require('./lib');
+
+var server = prerender({
+    jsCheckTimeout: 300
+});
+
+server.start();
+```
+
+Number of milliseconds between the interval of checking whether the javascript timeout has been reached or not. You can also set the environment variable of `JS_CHECK_TIMEOUT` instead of passing in the `jsCheckTimeout` parameter. `Default: 300`
+
+### noJsExecutionTimeout
+```
+var prerender = require('./lib');
+
+var server = prerender({
+    noJsExecutionTimeout: 3000
+});
+
+server.start();
+```
+
+Number of milliseconds to wait while not being able to execute javascript before determining that the Prerender server hasn't been able to execute javascript, usually due to a webpage not giving up control of the JS execution thread (infinite loop). You can also set the environment variable of `NO_JS_EXECUTION_TIMEOUT` instead of passing in the `noJsExecutionTimeout` parameter. `Default: 3000`
+
+### evaluateJavascriptCheckTimeout
+```
+var prerender = require('./lib');
+
+var server = prerender({
+    evaluateJavascriptCheckTimeout: 300
+});
+
+server.start();
+```
+
+Number of milliseconds between executing the javascript on the webpage to pull off the HTML. Pulling off the HTML only happens multiple times when `window.prerenderReady` is set to false. You can also set the environment variable of `EVALUATE_JAVASCRIPT_CHECK_TIMEOUT` instead of passing in the `evaluateJavascriptCheckTimeout` parameter. `Default: 300`
 
 ## Plugins
 
@@ -258,19 +200,19 @@ Plugins are in the `lib/plugins` directory, and add functionality to the prerend
 
 Each plugin can implement any of the plugin methods:
 
-#### `init()`
+####`init()`
 
-#### `requestReceived(req, res, next)`
+####`beforePhantomRequest(req, res, next)`
 
-#### `tabCreated(req, res, next)`
+####`onPhantomPageCreate(phantom, req, res, next)`
 
-#### `pageLoaded(req, res, next)`
+####`afterPhantomRequest(req, res, next)`
 
-#### `beforeSend(req, res, next)`
+####`beforeSend(req, res, next)`
 
 ## Available plugins
 
-You can use any of these plugins by modifying the `server.js` file
+You can enable the plugins in `server.js` by uncommenting the corresponding lines.
 
 ### basicAuth
 
@@ -285,17 +227,17 @@ export BASIC_AUTH_PASSWORD=test
 Then make sure to pass the basic authentication headers (password base64 encoded).
 
 ```
-curl -u prerender:wrong http://localhost:3000/http://example.com -> 401
-curl -u prerender:test http://localhost:3000/http://example.com -> 200
+curl -u prerender:wrong http://localhost:1337/http://example.com -> 401
+curl -u prerender:test http://localhost:1337/http://example.com -> 200
 ```
 
 ### removeScriptTags
 
 We remove script tags because we don't want any framework specific routing/rendering to happen on the rendered HTML once it's executed by the crawler. The crawlers may not execute javascript, but we'd rather be safe than have something get screwed up.
 
-For example, if you rendered the HTML of an angular page but left the angular scripts in there, your browser would try to execute the angular routing and possibly end up clearing out the HTML of the page.
+For example, if you rendered the HTML of an angular page but left the angular scripts in there, your browser would try to execute the angular routing and rendering on a page that no longer has any angular bindings.
 
-This plugin implements the `pageLoaded` function, so make sure any caching plugins run after this plugin is run to ensure you are caching pages with javascript removed.
+This plugin implements the `beforeSend` funtion, therefore cached HTML pages still contain scripts tags until they get served.
 
 ### httpHeaders
 
@@ -311,7 +253,7 @@ Example: telling prerender to server this page as a 404
 Example: telling prerender to serve this page as a 302 redirect
 ```html
 <meta name="prerender-status-code" content="302">
-<meta name="prerender-header" content="Location: https://www.google.com">
+<meta name="prerender-header" content="Location: http://www.google.com">
 ```
 
 ### whitelist
@@ -330,139 +272,81 @@ You can add the blacklisted domains to the plugin itself, or use the `BLACKLISTE
 
 `export BLACKLISTED_DOMAINS=yahoo.com,www.google.com`
 
-### in-memory-cache
 
-Caches pages in memory. Available at [prerender-memory-cache](https://github.com/prerender/prerender-memory-cache)
+### <a id='s3-html-cache'></a>
+### s3HtmlCache
 
-### s3-html-cache
+A `GET` request will check S3 for a cached copy. If a cached copy is found, it will return that. Otherwise, it will make the request to your server and then persist the HTML to the S3 cache.
 
-Caches pages in S3. Available at [coming soon](https://github.com/prerender/prerender)
+A `POST` request will skip the S3 cache. It will make a request to your server and then persist the HTML to the S3 cache. The `POST` is meant to update the cache.
 
---------------------
-
-### <a id='prerendercom'></a>
-# Prerender.com
-###### For doing your own web crawling
-
-When running your Prerender server in the web crawling context, we have a separate "API" for the server that is more complex to let you do different things like:
-- get HTML from a web page
-- get screenshots (viewport or full screen) from a web page
-- get PDFS from a web page
-- get HAR files from a web page
-- execute your own javascript and return json along with the HTML
-
-If you make an http request to the `/render` endpoint, you can pass any of the following options. You can pass any of these options as query parameters on a GET request or as JSON properties on a POST request. We recommend using a POST request but we will display GET requests here for brevity. Click here to see [how to send the POST request](#getvspost).
-
-These examples assume you have the server running locally on port 3000 but you can also use our hosted service at [https://prerender.com/](https://prerender.com/).
-
-#### url
-
-The URL you want to load. Returns HTML by default.
+You'll need to sign up with Amazon Web Services and export these 3 environment variables.
 
 ```
-http://localhost:3000/render?url=https://www.example.com/
+$ export AWS_ACCESS_KEY_ID=<aws access key>
+$ export AWS_SECRET_ACCESS_KEY=<aws secret access key>
+$ export S3_BUCKET_NAME=<bucket name>
 ```
 
-#### renderType
+Warning! Your keys should be kept private and you'll be charged for all files uploaded to S3.
 
-The type of content you want to pull off the page.
+> If Prerender is hosted on a EC2 instance, you can also take advantage of [IAM instance roles](http://aws.typepad.com/aws/2012/06/iam-roles-for-ec2-instances-simplified-secure-access-to-aws-service-apis-from-ec2.html)
+so that you don't need to export your AWS credentials.
 
-```
-http://localhost:3000/render?renderType=html&url=https://www.example.com/
-```
+> You can also export the S3_PREFIX_KEY variable so that the key (which is by default the complete requested URL) is
+prefixed. This is useful if you want to organize the snapshots in the same bucket.
 
-Options are `html`, `jpeg`, `png`, `pdf`, `har`.
+#### Region 
 
-#### userAgent
 
-Send your own custom user agent when Chrome loads the page.
-
-```
-http://localhost:3000/render?userAgent=ExampleCrawlerUserAgent&url=https://www.example.com/
-```
-
-#### fullpage
-
-Whether you want your screenshot to be the entire height of the document or just the viewport.
+By default, s3HtmlCache works with the US Standard region (East), if your bucket is localized in another region you can config it with an environment variable : `AWS_REGION`.
 
 ```
-http://localhost:3000/render?fullpage=true&renderType=html&url=https://www.example.com/
+$ export AWS_REGION=<region name>
 ```
 
-Don't include `fullpage` and we'll just screenshot the normal browser viewport. Include `fullpage=true` for a full page screenshot.
-
-#### width
-
-Screen width. Lets you emulate different screen sizes.
+For example :
 
 ```
-http://localhost:3000/render?width=990&url=https://www.example.com/
+$ export AWS_REGION=eu-west-1
 ```
 
-Default is `1440`.
+### inMemoryHtmlCache
 
-#### height
+*Note* The in memory cache is per process so if you have multiple Prerender workers then they do not share a cache. For higher traffic websites, use a common cache like redis.
 
-Screen height. Lets you emulate different screen sizes.
+An in memory cache but you can easily change it to any caching system compatible with the `cache-manager` nodejs package.
 
-```
-http://localhost:3000/render?height=100&url=https://www.example.com/
-```
+For example, with the request:
 
-Default is `718`.
+`GET http://service.prerender.io/https://www.facebook.com/`
 
-#### followRedirects
+First time: Overall Elapsed:	00:00:03.3174661
 
-By default, we don't follow 301 redirects on the initial request so you can be alerted of any changes in URLs to update your crawling data. If you want us to follow redirects instead, you can pass this parameter.
+With cache: Overall Elapsed:	00:00:00.0360119
 
-```
-http://localhost:3000/render?followRedirects=true&url=https://www.example.com/
-```
 
-Default is `false`.
+### logger
 
-#### javascript
+This will show console.log's from the phantomjs page in your local console. Great for debugging.
 
-Execute javascript to modify the page before we snapshot your content. If you set `window.prerenderData` to an object, we will pull the object off the page and return it to you. Great for parsing extra data from a page in javascript.
+### mongodbCache
 
-```
-http://localhost:3000/render?javascript=window.prerenderData=window.angular.version&url=https://www.example.com/
-```
+Caches pages in a MongoDB database. Available at [prerender-mongodb-cache](https://github.com/lammertw/prerender-mongodb-cache) by [@lammertw](https://github.com/lammertw)
 
-When using this parameter and `window.prerenderData`, the response from Prerender will look like:
-```
-{
-	prerenderData: { example: 'data' },
-	content: '<html><body></body></html>'
-}
-```
 
-If you don't set `window.prerenderData`, the response won't be JSON. The response will just be the normal HTML.
+### memjsCache
 
-### <a id='getvspost'></a>
-### Get vs Post
+Caches pages in a memjs(memcache) service. Available at [prerender-memjs-cache](https://github.com/lammertw/prerender-memjs-cache) by [@lammertw](https://github.com/lammertw)
 
-You can send all options as a query parameter on a GET request or as a JSON property on a POST request. We recommend using the POST request when possible to avoid any issues with URL encoding of GET request query strings. Here's a few pseudo examples:
 
-```
-POST http://localhost:3000/render
-{
-	renderType: 'html',
-	javascript: 'window.prerenderData = window.angular.version',
-	url: 'https://www.example.com/'
-}
-```
+### levelCache
 
-```
-POST http://localhost:3000/render
-{
-	renderType: 'jpeg',
-	fullpage: 'true',
-	url: 'https://www.example.com/'
-}
-```
+Caches pages in a levelDB database. Available at [prerender-level-cache](https://github.com/maxlath/prerender-level-cache) by [@maxlath](https://github.com/maxlath)
 
-Check out our [full documentation](https://prerender.com/documentation)
+### accessLog
+
+Create access log file for prerendered requests. Available at [prerender-access-log](https://github.com/unDemian/prerender-access-log) by [@unDemian](https://github.com/unDemian)
 
 
 ## License
