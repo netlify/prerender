@@ -1,6 +1,6 @@
 var assert = require('assert'),
 	sinon = require('sinon'),
-	prerender = require('../index'),
+	prerender = require('../lib/index'),
 	util = require('../lib/util')
 
 describe('Prerender', function() {

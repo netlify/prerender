@@ -25,7 +25,7 @@
   },
   "scripts": {
     "start": "node server.js",
-    "test": "./node_modules/.bin/mocha"
+    "test": "mocha"
   },
   "engines": {
     "node": ">=8.9"

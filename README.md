@@ -21,7 +21,7 @@ If you are trying to test Prerender with your website on localhost, you'll have 
 	$ git clone https://github.com/netlify/prerender.git
 	$ cd prerender
 	$ npm install
-	$ node server.js
+	$ npm start
 
 Prerender will now be running on http://localhost:3000 and you can test your page (deployed on netlify or elsewhere!) using links like this:
 
