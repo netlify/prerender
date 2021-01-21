@@ -103,6 +103,14 @@ describe('Prerender', function() {
 			assert.equal(url, 'http://www.example.com/?brand=h%26m&size=m');
 		});
 
+		it('should handle fully encoded urls', function() {
+			var url = util.getUrl(encodeURIComponent('http://www.example.com/?brand=h%26m&size=m'));
+			assert.equal(url, 'http://www.example.com/?brand=h%26m&size=m');
+
+			url = util.getUrl(encodeURIComponent('https://www.example.com/?brand=h%26m&size=m'));
+			assert.equal(url, 'https://www.example.com/?brand=h%26m&size=m');
+		});
+
 		it('should handle params before and after #!', function() {
 			var url = util.getUrl('www.example.com?user=userid&_escaped_fragment_=key1=value1%26key2=value2');
 			assert.equal(url, 'www.example.com?user=userid#!key1=value1&key2=value2');
