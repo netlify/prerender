@@ -14,9 +14,8 @@ metadata:
     # More info on this plugin can be found at https://roadie.io/backstage/plugins/pagerduty/
     # backstage.io/techdocs-ref: << put path to the mkdocs config file here (generally it's the root of the repo, "dir:.") >>
     # More info on this plugin can be found at https://roadie.io/docs/getting-started/technical-documentation/
-# tags:
-#   - golang
-#   - js
+  tags:
+    - js
 # links: 
 #   - url: https://link.to.dashboard.com
 #     title: Example link
