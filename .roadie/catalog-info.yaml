@@ -1,0 +1,36 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: prerender 
+  title: Prerendering 
+  description: Helps with automatically rendering JS-driven pages for crawlers and social sharing
+  annotations:
+    github.com/project-slug: netlify/prerender
+    circleci.com/project-slug: github/netlify/prerender
+    # datadoghq.com/site: datadoghq.com
+    # datadoghq.com/dashboard-url: << put url to shared DataDog dashboard here >>
+    # More info on this plugin can be found at https://roadie.io/backstage/plugins/datadog/
+    # pagerduty.com/integration-key: << put PagerDuty integration key here >>
+    # More info on this plugin can be found at https://roadie.io/backstage/plugins/pagerduty/
+    # backstage.io/techdocs-ref: << put path to the mkdocs config file here (generally it's the root of the repo, "dir:.") >>
+    # More info on this plugin can be found at https://roadie.io/docs/getting-started/technical-documentation/
+  tags:
+    - js
+# links: 
+#   - url: https://link.to.dashboard.com
+#     title: Example link
+#     icon: dashboard
+#     type: example-dashboard 
+spec:
+  type: service
+  lifecycle: production 
+  serviceTier: tier-2
+  owner: runtime-pod-app-delivery-network
+  # system: << Put component system here>>
+  # dependsOn:
+  #     - component:some-component (Some other service, library, etc.)
+  #     - resource:some-resource (could be a DB, Queue, S3 bucket, etc.)
+  # providesApis:
+  #     - some-api-name
+  # consumesApis:
+  #     - some-other-api-name
