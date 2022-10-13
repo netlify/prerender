@@ -218,17 +218,24 @@ You can enable the plugins in `server.js` by uncommenting the corresponding line
 
 If you want to only allow access to your Prerender server from authorized parties, enable the basic auth plugin.
 
-You will need to add the `BASIC_AUTH_USERNAME` and `BASIC_AUTH_PASSWORD` environment variables.
+You will need to add the `BASIC_AUTH` environment variable. This is a CSV of username:password pairs:
 ```
-export BASIC_AUTH_USERNAME=prerender
-export BASIC_AUTH_PASSWORD=test
+export BASIC_AUTH=u1:p1,u1:p2,u2:p3
 ```
 
-Then make sure to pass the basic authentication headers (password base64 encoded).
+Then make sure to pass the basic authentication headers.
 
-```
+``` 
 curl -u prerender:wrong http://localhost:1337/http://example.com -> 401
-curl -u prerender:test http://localhost:1337/http://example.com -> 200
+curl -u u1:p2 http://localhost:1337/http://example.com -> 200
+
+
+# or if you want to explicitly set the header
+
+echo -n "u1:p2" | base64
+# dTE6cDI=
+
+curl -H "Authorization: Basic dTE6cDI=" http://localhost:1337/http://example.com
 ```
 
 ### removeScriptTags
