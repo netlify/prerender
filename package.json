@@ -20,7 +20,7 @@
     "valid-url": "~1.0.9"
   },
   "devDependencies": {
-    "mocha": "^5.2.0",
+    "mocha": "^10.2.0",
     "sinon": "^6.1.4"
   },
   "scripts": {
