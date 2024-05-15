@@ -16,7 +16,7 @@
     "express": "~4.19.2",
     "morgan": "^1.10.0",
     "chrome-remote-interface": "~0.25.7",
-    "he": "~1.1.1",
+    "he": "~1.2.0",
     "valid-url": "~1.0.9"
   },
   "devDependencies": {
