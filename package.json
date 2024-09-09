@@ -9,7 +9,7 @@
     "url": "https://github.com/netlify/prerender"
   },
   "dependencies": {
-    "aws-sdk": "^2.1687.0",
+    "aws-sdk": "^2.1691.0",
     "body-parser": "~1.20.2",
     "cache-manager": "^2.7.0",
     "compression": "~1.7.4",
