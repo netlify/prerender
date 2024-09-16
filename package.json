@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "aws-sdk": "^2.1687.0",
-    "body-parser": "~1.20.2",
+    "body-parser": "~1.20.3",
     "cache-manager": "^2.7.0",
     "compression": "~1.7.4",
     "express": "~4.19.2",
