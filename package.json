@@ -11,7 +11,7 @@
   "dependencies": {
     "aws-sdk": "^2.1687.0",
     "body-parser": "~1.20.2",
-    "cache-manager": "^2.7.0",
+    "cache-manager": "^6.1.0",
     "compression": "~1.7.4",
     "express": "~4.19.2",
     "morgan": "^1.10.0",
